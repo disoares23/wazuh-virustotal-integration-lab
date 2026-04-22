@@ -168,10 +168,7 @@ Ainda no `ossec.conf`, adiciona **dois blocos** — um para definir o comando, o
 
 > ⚠️ **Atenção ao `<location>`:** `local` significa que o comando é executado **no agente que gerou o alerta**. Outras opções: `server` (no manager), `defined-agent` (num agente específico), `all` (em todos).
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_02_ossec_conf_active_response_command.png -->
-> *Blocos `<command>` e `<active-response>` no ossec.conf*
-
+![Blocos command e active-response no ossec.conf](assets/screenshot_02_ossec_conf_active_response_command.png)
 ---
 
 ### 4. Decoder Personalizado
@@ -190,9 +187,7 @@ Adiciona ao ficheiro `/var/ossec/etc/decoders/local_decoder.xml`:
 
 > 🔍 Este decoder captura o caminho do ficheiro removido a partir do output do script, permitindo que o Wazuh crie alertas ricos com o contexto completo da remoção.
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_03_local_decoder_xml.png -->
-> *Conteúdo do `local_decoder.xml` com decoder personalizado*
+![Conteúdo do local_decoder.xml](assets/screenshot_03_local_decoder_xml.png)
 
 ---
 
@@ -225,9 +220,7 @@ No ficheiro `/var/ossec/etc/rules/local_rules.xml`, adiciona as regras personali
 > - `553` → Wazuh regista a execução do Active Response
 > - `100093` → regra custom que confirma a remoção (opcional, para dashboards)
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_04_local_rules_xml.png -->
-> *Regras 100092 e 100093 no local_rules.xml*
+![Cadeia de alertas no dashboard Wazuh](assets/screenshot_06_wazuh_dashboard_alert_chain.png)
 
 ---
 
@@ -293,9 +286,7 @@ Aqui está o pipeline completo, passo a passo, do momento em que um ficheiro mal
 11. Regra 553/100093 → alerta de confirmação no SIEM
 ```
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_06_wazuh_dashboard_alert_chain.png -->
-> *Dashboard Wazuh mostrando a cadeia de alertas: 554 → 87105 → 100092 → 553*
+![Cadeia de alertas no dashboard Wazuh](assets/screenshot_06_wazuh_dashboard_alert_chain.png)
 
 ---
 
@@ -335,9 +326,7 @@ tail -f /var/ossec/logs/alerts/alerts.json | python3 -m json.tool | grep -A5 "10
 Get-Content "C:\Program Files (x86)\ossec-agent\active-response\active-responses.log" -Tail 20
 ```
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_09_file_removed_confirmation.png -->
-> *Sistema de ficheiros no Windows mostrando que o ficheiro foi removido*
+![Ficheiro removido confirmado no Windows](assets/screenshot_09_file_removed_confirmation.png)
 
 ---
 
