@@ -129,10 +129,6 @@ No ficheiro `/var/ossec/etc/ossec.conf` do **Manager**, adiciona o bloco de inte
 
 > 📌 A regra `554` é a regra nativa do Wazuh para **criação de novos ficheiros** detetada pelo FIM. É o ponto de entrada do pipeline.
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_01_ossec_conf_virustotal_integration.png -->
-> *`/var/ossec/etc/ossec.conf` com bloco `<integration>` configurado*
-
 ---
 
 ### 2. Script de Remoção (remove-threat)
@@ -257,10 +253,6 @@ Confirma também que o Active Response está habilitado no agente:
 
 > 💡 `realtime="yes"` é **obrigatório** para deteção imediata. Sem isto, o FIM só verifica no intervalo de scan configurado (por defeito, 6 horas — tempo mais que suficiente para um atacante fazer danos consideráveis).
 
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_05_agent_ossec_conf_syscheck.png -->
-> *Configuração do syscheck no agente Windows*
-
 ---
 
 ## Fluxo de Deteção e Resposta
@@ -342,14 +334,6 @@ tail -f /var/ossec/logs/alerts/alerts.json | python3 -m json.tool | grep -A5 "10
 # Log local do Active Response
 Get-Content "C:\Program Files (x86)\ossec-agent\active-response\active-responses.log" -Tail 20
 ```
-
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_07_eicar_test_dashboard.png -->
-> *Sequência de alertas no Wazuh após criação do EICAR — regras 554, 87105, 100092, 553*
-
-**Screenshot sugerido:**
-<!-- PLACEHOLDER: screenshot_08_active_response_log.png -->
-> *Conteúdo do active-responses.log confirmando a remoção*
 
 **Screenshot sugerido:**
 <!-- PLACEHOLDER: screenshot_09_file_removed_confirmation.png -->
@@ -514,7 +498,7 @@ A infraestrutura completa inclui:
 - 🟢 **VLAN30 MARTE** — OPNsense + Suricata + OpenVPN + IPSec
 - 🔵 **VLAN103 GESTÃO** — Wazuh, Nessus, Grafana, Active Directory
 
-**Equipa:** Diego Soares · Ricardo Dias · Pedro Gonçalves  
+**Equipa:** Diego Soares · Ricardo Dias 
 **Domínio:** DiePedRic.win
 
 > *"Configurar o Wazuh Active Response com VirusTotal parece simples no papel. Na prática, envolve pelo menos três momentos de 'mas estava a funcionar ontem!', um decoder que não encontras na documentação oficial, e a descoberta de que o path do active-responses.log é diferente no manager e no agente. Consideras-te avisado."*
@@ -528,7 +512,6 @@ A infraestrutura completa inclui:
 - [Wazuh Documentation — File Integrity Monitoring](https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html)
 - [VirusTotal API Documentation](https://developers.virustotal.com/reference/overview)
 - [EICAR Test File](https://www.eicar.org/download-anti-malware-testfile/)
-- Scripts PHP para servidor de phishing assistidos por [Claude (claude.ai)](https://claude.ai)
 
 ---
 
